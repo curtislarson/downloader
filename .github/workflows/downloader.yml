@@ -1,0 +1,19 @@
+name: Downloader
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  ci:
+    name: 🚑 CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Deno
+        uses: denoland/setup-deno@v1
+
+      - run: deno run -A --no-config --no-check ./tasks/download.ts
+        env:
+          DOWNLOAD_URL: ${{ secrets.DOWNLOAD_URL }}
