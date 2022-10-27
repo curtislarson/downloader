@@ -6,7 +6,7 @@ if (url === undefined) {
 
 async function download(downloadUrl: string) {
   const file = Deno.makeTempFileSync();
-  const denoFile = Deno.openSync(file);
+  const denoFile = Deno.openSync(file, { write: true, create: true });
 
   const stream = await fetch(downloadUrl).then((r) => r.body!);
 
